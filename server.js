@@ -10,7 +10,7 @@ server
     .option('-m --method <method>', 'encryption method, default: aes-256-cfb')
     .option('-k --password <password>', 'password')
     .option('-s --server-address <address>', 'server address')
-    .option('-p --server-port <port>', 'server port, default: 8388')
+    .option('-p --server-port <port>', 'server port, default: 9999')
     .option('--log-level <level>', 'log level(debug|info|warn|error|fatal)', /^(debug|info|warn|error|fatal)$/i, 'info')
     .option('--log-file <file>', 'log file')
     .parse(process.argv);
@@ -29,8 +29,8 @@ function startWorker(id) {
     logger.info(`started worker ${id}`);
     var relay = new TCPRelay({
         serverAddress: process.env['SERVER_ADDRESS'] || server.serverAddress || '127.0.0.1',
-        serverPort: process.env['PORT'] || server.serverPort || 8388,
-        password: process.env['PASSWORD'] || server.password || 'shadowsocks-over-websocket',
+        serverPort: process.env['PORT'] || server.serverPort || 9999,
+        password: process.env['PASSWORD'] || server.password || 'shadowsocks',
         method: process.env['METHOD'] || server.method || 'aes-256-cfb'
     }, false);
 
